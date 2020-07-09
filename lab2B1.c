@@ -406,12 +406,13 @@ FILE *generateTestInput(int min, int max, int size)
 void computeAvg(functionRuntimes fRT)
 {
     int n = fRT.numTestCaseSizes;
+    int i, j;
     double sum;
 
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         sum = 0;
-        for (int j = 0; j < fRT.numTestCases; j++)
+        for (j = 0; j < fRT.numTestCases; j++)
         {
             sum += fRT.times[i][j];
         }
@@ -424,19 +425,20 @@ void computeAvg(functionRuntimes fRT)
  */
 void printRuntimeTable(functionRuntimes fRT)
 {
+    int i, j;
     printf("%s\n", fRT.name);
     printf("Test size      ");
-    for (int i = 0; i < fRT.numTestCases; i++)
+    for (i = 0; i < fRT.numTestCases; i++)
     {
         printf("\tTest #%d", i);
     }
     printf("\tAverage\n");
 
-    for (int i = 0; i < fRT.numTestCaseSizes; i++)
+    for (i = 0; i < fRT.numTestCaseSizes; i++)
     {
         printf("%d     ", fRT.testCaseSizes[i]);
 
-        for (int j = 0; j < fRT.numTestCases; j++)
+        for (j = 0; j < fRT.numTestCases; j++)
         {
             printf("\t%.3f ", fRT.times[i][j]);
         }
@@ -453,7 +455,8 @@ void printRuntimeTable(functionRuntimes fRT)
 void freeFunctionRuntimes(functionRuntimes fRT)
 {
     //free(fRT.&name);
-    for (int i = 0; i < fRT.numTestCaseSizes; i++)
+    int i;
+    for (i = 0; i < fRT.numTestCaseSizes; i++)
     {
         free(fRT.times[i]);
     }
